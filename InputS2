@@ -1,0 +1,32 @@
+package myProject;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class InputS2 {
+	public static void main(String[] args) throws Exception {
+	    try { 
+	    	FileInputStream fis = new FileInputStream(args[0]);
+	    	FileOutputStream fos = new FileOutputStream(args[1]);
+	    	
+	    	int total = 0;
+	    	byte[] b = new byte[200];
+	    	int k = fis.read(b);
+	    	while(k != -1) {
+	    		total += k;
+	    		fos.write(b, 0, k);
+	    		k = fis.read(b);
+	    	}
+	    	System.out.print(total + "bytes");
+	    	fis.close();
+	    	fos.close();
+        } catch(IOException e) {
+            System.out.println("오류발생");  
+        }
+	}
+}
+//2. 원본 파일의 내용을 200바이트씩 새로운 파일에 옮겨 복사한다. 즉, InputStream의
+//int read(byte[] buf) 메소드로 읽어서 OutputStream의 
+//void write(byte[] buf, int offset, int length) 메소드로 출력하며 바이트
+//배열 buf의 크기를 200으로 한다.
