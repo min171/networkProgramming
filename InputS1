@@ -1,0 +1,27 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class InputS1 {
+		public static void main(String[] args) throws Exception {
+		    try { 
+		    	FileInputStream fis = new FileInputStream(args[0]);
+		    	FileOutputStream fos = new FileOutputStream(args[1]);
+		    	
+		    	int total = 0;
+		    	int k = fis.read();
+		    	while(k != -1) {
+		    		total++;
+		    		fos.write(k);
+		    		k = fis.read();
+		    	}
+		    	System.out.print(total + "bytes");
+		    	fis.close();
+		    	fos.close();
+	        } catch(IOException e) {
+	            System.out.println("오류발생");  
+	        }
+		}
+}
+//1. InputStream의 int read()로 한 바이트씩 읽어서 OutputStream의 
+//void write(int)로 한 바이트씩 출력한다.
